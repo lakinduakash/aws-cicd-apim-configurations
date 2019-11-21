@@ -39,4 +39,21 @@ class apim inherits apim::params {
       mode   => '0754',
       source => "puppet:///modules/${module_name}/repository/components/lib/${mysql_connector}",
     }
+
+    # Copy keystore/resource files
+    file { "$carbon_home/$product-$product_version/repository/resources":
+      ensure => directory,
+      recurse => remote,
+      source => "puppet:///modules/${module_name}/repository/resources",
+      mode  => '0754',
+  }
+  
+  # Copy other jars
+    file { "$carbon_home/$product-$product_version/repository/components/lib":
+      ensure: directory,
+      recurse => remote,
+      mode   => '0754',
+      source => "puppet:///modules/${module_name}/repository/components/lib",
+    }
+
 }
