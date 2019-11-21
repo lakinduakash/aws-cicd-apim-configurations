@@ -50,7 +50,7 @@ class apim inherits apim::params {
   
   # Copy other jars
     file { "$carbon_home/$product-$product_version/repository/components/lib":
-      ensure: directory,
+      ensure => directory,
       recurse => remote,
       mode   => '0754',
       source => "puppet:///modules/${module_name}/repository/components/lib",
